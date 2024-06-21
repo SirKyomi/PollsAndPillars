@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba16s6w01repd"]
+[gd_scene load_steps=5 format=3 uid="uid://ba16s6w01repd"]
 
-[ext_resource type="Texture2D" uid="uid://cx3got1bd641b" path="res://Art/fantasyhextiles_v3.png" id="1_u58iu"]
+[ext_resource type="Texture2D" uid="uid://cx3got1bd641b" path="res://Art/fantasyhextiles_v3.png" id="1_p7ifg"]
+[ext_resource type="Script" path="res://Logic/PollsAndPillars.cs" id="1_yf0n4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3gkx0"]
-texture = ExtResource("1_u58iu")
+texture = ExtResource("1_p7ifg")
 texture_region_size = Vector2i(32, 48)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 9)
@@ -110,6 +111,7 @@ tile_size = Vector2i(32, 28)
 sources/1 = SubResource("TileSetAtlasSource_3gkx0")
 
 [node name="PollsAndPillars" type="Node2D"]
+script = ExtResource("1_yf0n4")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(0, 3)
