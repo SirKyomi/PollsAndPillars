@@ -8,13 +8,12 @@ Alle paralleln zu realen Ereignissen sind reiner Zufall.
 ## Grundidee
 
 
-
-
-
 ## License
+
+MIT
 
 ## Contributors
 
-[@SirKyomi](https://github.com/SirKyomi)
+[@SirKyomi](https://github.com/SirKyomi) <br/>
 [@LeutnantJohn](https://github.com/LeutnantJohn)
 
