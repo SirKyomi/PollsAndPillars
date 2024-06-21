@@ -59,6 +59,8 @@ Name: Polls and Pillars
 - Klimabelastung steigt = Wählerzustimmung steigt
 
 
+- Arbeitslosigkeit steigt pro Jahr leicht bis stark (durch z.B.: Bevölkerungswachstum)
+
 
 #### Module
 ##### Solar
@@ -66,7 +68,6 @@ Name: Polls and Pillars
 ##### Fabrik
 ![Solarmodul.png](Images/Fabrikmodul.png)
 
-Arbeitslosigkeit steigt pro Jahr leicht bis stark -> Bevölkerungswachstum <br />
 
 ## License
 
