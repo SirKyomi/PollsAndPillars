@@ -180,7 +180,7 @@ offset_right = 153.0
 offset_bottom = -4.0
 text = "Wählerzustimmung"
 
-[node name="Zeit" type="ProgressBar" parent="."]
+[node name="WahlperiodeBar" type="ProgressBar" parent="."]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 51.0
@@ -188,11 +188,11 @@ offset_right = 330.0
 offset_bottom = 81.0
 theme_override_styles/background = SubResource("StyleBoxFlat_6qn4o")
 theme_override_styles/fill = SubResource("StyleBoxFlat_bafcu")
-step = 1.0
-value = 49.0
+step = 0.05
+value = 100.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="Zeit"]
+[node name="Label" type="Label" parent="WahlperiodeBar"]
 clip_contents = true
 layout_direction = 1
 layout_mode = 0
