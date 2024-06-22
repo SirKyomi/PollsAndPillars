@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace PollsAndPillars.Logic;
 
 public partial class PollsAndPillars : Node2D
 {

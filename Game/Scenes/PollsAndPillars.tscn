@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba16s6w01repd"]
+[gd_scene load_steps=5 format=3 uid="uid://b3g1ht4becoky"]
 
 [ext_resource type="Texture2D" uid="uid://cx3got1bd641b" path="res://Art/fantasyhextiles_v3.png" id="1_p7ifg"]
 [ext_resource type="Script" path="res://Logic/PollsAndPillars.cs" id="1_yf0n4"]
