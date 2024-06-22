@@ -1,0 +1,5 @@
+[gd_resource type="Theme" format=3 uid="uid://c3s8ue51w08jt"]
+
+[resource]
+resource_name = "MenuTheme"
+default_font_size = 32

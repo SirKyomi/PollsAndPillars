@@ -10,6 +10,8 @@ public partial class PollsAndPillars : Node2D
 	bool popupIsShowing = false;
 	bool mouseIsInPopup = false;
 	Vector2I mousePositionSuccessFullClick;
+	Vector2I atlasCoordsFactory = new Vector2I(2, 5);
+	Vector2I atlasCoordsCarbonCapture = new Vector2I(1, 5);
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -37,11 +39,11 @@ public partial class PollsAndPillars : Node2D
 	}
 
 	private void OnPopupMenuIdPressed(int id) {
-		var sourceID = 1;
-		var atlasCoordsTargetTile = id == 1 ? new Vector2I(2, 4) : new Vector2I(1, 4);
+		var sourceID = 0;
+		var atlasCoordsTargetTile = id == 1 ? atlasCoordsCarbonCapture : atlasCoordsFactory;
 		tileMap.SetCell(groundLayer, mousePositionSuccessFullClick, sourceID, atlasCoordsTargetTile);
 		
-		if (atlasCoordsTargetTile == new Vector2I(2, 4)){
+		if (atlasCoordsTargetTile == atlasCoordsCarbonCapture){
 			//klimafreundlich
 			//stats anpassen
 		} else {
