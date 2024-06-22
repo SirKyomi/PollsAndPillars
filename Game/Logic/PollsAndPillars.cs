@@ -32,7 +32,6 @@ public partial class PollsAndPillars : Node2D
 			var atlasCoordsMouse = tileMap.GetCellAtlasCoords(1, tileMousePosition);
 			
 			if (atlasCoordsMouse == new Vector2I(6, 1) && !(popupIsShowing && mouseIsInPopup)) {
-				//GD.Print("Buildable Tile found and accessible");
 				var absoluteMousePosition = GetViewport().GetMousePosition();
 				popupMenu.Popup(new Rect2I((int)absoluteMousePosition.X, (int)absoluteMousePosition.Y, popupMenu.Size.X, popupMenu.Size.Y));
 				popupIsShowing = true;
@@ -47,13 +46,9 @@ public partial class PollsAndPillars : Node2D
 		tileMap.SetCell(groundLayer, mousePositionSuccessFullClick, sourceID, atlasCoordsTargetTile);
 		
 		if (atlasCoordsTargetTile == atlasCoordsCarbonCapture){
-			//klimafreundlich
-			//stats anpassen
-			EmitSignal(SignalName.UiAktualisieren, 12, 15, -10);
+			EmitSignal(SignalName.UiAktualisieren, 0, -25, -15); //klimafreundlich
 		} else {
-			//klimaschädlich
-			//stats anpassen
-			EmitSignal(SignalName.UiAktualisieren, -12, 15, -10);
+			EmitSignal(SignalName.UiAktualisieren, -10, 15, 20);
 		}
 
 		popupIsShowing = false;

@@ -23,7 +23,7 @@ public partial class GUI : Control
 
     private Timer _timerArbeitslosenHinzufuegen;
     private const int AnzahlAbreitslosenSteigerungenProWahlperiode = 24;
-    private const double FaktorAbreitslosenSteigerungenProWahlperiode = 2;
+    private const double FaktorAbreitslosenSteigerungenProWahlperiode = 4;
     private const double WaitTimeArbeitslosenHinzufuegen = SekundenProWahlperiode / AnzahlAbreitslosenSteigerungenProWahlperiode;
     
     private double _vergangeneZeit = 0;
@@ -68,23 +68,25 @@ public partial class GUI : Control
 
     private void ErhoeheArbeitslosigkeit()
     {
-        _arbeitslosigkeit += FaktorAbreitslosenSteigerungenProWahlperiode;
-        ArbeitslosigkeitUiAktualisieren();
-        BerechneWaehlerzustimmung();
+        ArbeitslosigkeitUiAktualisieren(FaktorAbreitslosenSteigerungenProWahlperiode);
+        BerechneWaehlerzustimmung(_arbeitslosigkeit, FaktorAbreitslosenSteigerungenProWahlperiode, true);
     }
 
-    private void ArbeitslosigkeitUiAktualisieren()
+    private void ArbeitslosigkeitUiAktualisieren(double arbeitslosigkeit)
     {
+        _arbeitslosigkeit += arbeitslosigkeit;
         _arbeitslosigkeit = Clamp0_100(_arbeitslosigkeit);
         GetNode<ProgressBar>("Panel/Arbeitslosigkeit/ArbeitslosigkeitBar").Value = _arbeitslosigkeit;
     } 
-    private void WohlstandUiAktualisieren()
+    private void WohlstandUiAktualisieren(double wohlstand)
     {
+        _wohlstand += wohlstand;
         _wohlstand = Clamp0_100(_wohlstand);
         GetNode<ProgressBar>("Panel/Wohlstand/WohlstandBar").Value = _wohlstand;
     }  
-    private void KlimabelastungUiAktualisieren()
+    private void KlimabelastungUiAktualisieren(double klimabelastung)
     {
+        _klimabelastung += klimabelastung;
         _klimabelastung = Clamp0_100(_klimabelastung);
         GetNode<ProgressBar>("Panel/Klimabelastung/KlimabelastungBar").Value = _klimabelastung;
     }
@@ -104,44 +106,36 @@ public partial class GUI : Control
         if (_waehlerzustimmung <= 0) GetTree().ReloadCurrentScene();
     }
 
-    public void OnPollsAndPillarsUiAktualisieren(double wohlstand, double arbeitslosigkeit, double klimabelastung) => WendeWerteAnUndBerechneWaehlerzustimmung(wohlstand, arbeitslosigkeit, klimabelastung);
+    public void OnPollsAndPillarsUiAktualisieren(double arbeitslosigkeit, double klimabelastung, double wohlstand) => WendeWerteAnUndBerechneWaehlerzustimmung(arbeitslosigkeit, klimabelastung, wohlstand);
 
-    private void WendeWerteAnUndBerechneWaehlerzustimmung(double wohlstand, double arbeitslosigkeit, double klimabelastung)
+    private void WendeWerteAnUndBerechneWaehlerzustimmung(double arbeitslosigkeit, double klimabelastung, double wohlstand)
     {
-        if (klimabelastung >= 0)
-            _klimabelastung += klimabelastung;
-        else
-            _klimabelastung -= klimabelastung * -1;
-        if (wohlstand >= 0)
-            _wohlstand += wohlstand;
-        else
-            _wohlstand -= wohlstand * -1;
-        if (arbeitslosigkeit >= 0)
-            _arbeitslosigkeit += arbeitslosigkeit;
-        else
-            _arbeitslosigkeit -= arbeitslosigkeit * -1;
+        KlimabelastungUiAktualisieren(klimabelastung);
+        BerechneWaehlerzustimmung(_klimabelastung, klimabelastung, true);
 
-        ArbeitslosigkeitUiAktualisieren();
-        WohlstandUiAktualisieren();
-        KlimabelastungUiAktualisieren();
-        BerechneWaehlerzustimmung();
+        WohlstandUiAktualisieren(wohlstand);
+        BerechneWaehlerzustimmung(_wohlstand, wohlstand, false);
+
+        
+        ArbeitslosigkeitUiAktualisieren(arbeitslosigkeit);
+        BerechneWaehlerzustimmung(_arbeitslosigkeit, arbeitslosigkeit, true);
     }
-
-    //TODO Jonathan nochmal anschauen
-    private void BerechneWaehlerzustimmung()
+    private void BerechneWaehlerzustimmung(double value, double changeValue, bool darfNichtHoeherSein)
     {
-        if (_arbeitslosigkeit > Schwellenwert)
-            _waehlerzustimmung -= (_arbeitslosigkeit - Schwellenwert) * 0.33;
-        if (_klimabelastung > Schwellenwert)
-            _waehlerzustimmung -= (_klimabelastung - Schwellenwert) * 0.33;
-        if (_wohlstand < Schwellenwert)
-            _waehlerzustimmung -= (_wohlstand - Schwellenwert) * -0.33;
-        
-        WaehlerzustimmungUiAktualisieren();
+        if (darfNichtHoeherSein && value > Schwellenwert && changeValue > 0){
+            _waehlerzustimmung -= changeValue * 0.33;
+        }            
+        else if (darfNichtHoeherSein && value < Schwellenwert && changeValue < 0){
+            _waehlerzustimmung += -(changeValue * 0.33);
+        }            
+        if (!darfNichtHoeherSein && value < Schwellenwert && changeValue < 0){
+            _waehlerzustimmung -= -(changeValue * 0.33);
+        }            
+        else if (!darfNichtHoeherSein && value > Schwellenwert && changeValue > 0){
+            _waehlerzustimmung += changeValue * 0.33;
+        }
 
-        GD.Print(
-            $"wohlstand: {_wohlstand} \n arbeitslosigkeit: {_arbeitslosigkeit}\n  klimabelastung: {_klimabelastung} \n waehlerschaft: {_waehlerzustimmung}");
-        
+        WaehlerzustimmungUiAktualisieren();
     }
 
 
