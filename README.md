@@ -13,6 +13,9 @@ Name: Polls and Pillars
   - (für den Anfang Klima -- erweiterbar mit Wohlstand, Arbeitslosigkeit etc.)
 
 ### Grundfläche: 
+
+![MapExample.png](Images/MapExample.png)
+
 #### Grundprinzip:
 - Tilemap mit simpler Grafik, Bauplätze klickbar.
 #### Erweiterungen: 
