@@ -1,0 +1,203 @@
+[gd_scene load_steps=11 format=3 uid="uid://bi554x4y7rwnv"]
+
+[ext_resource type="Script" path="res://Logic/Progressbar_MinGood.cs" id="1_a4c7n"]
+[ext_resource type="Script" path="res://Logic/Progressbar_MaxGood.cs" id="1_ubn5p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6mjl"]
+bg_color = Color(0.341176, 0.639216, 0.639216, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mi343"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4lruc"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obgdw"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vlgao"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xfy4"]
+bg_color = Color(0.341176, 0.639216, 0.639216, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6qn4o"]
+bg_color = Color(0.341176, 0.639216, 0.639216, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bafcu"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.341176, 0.639216, 0.639216, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+offset_left = 14.0
+offset_top = 141.0
+offset_right = 289.0
+offset_bottom = 441.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b6mjl")
+
+[node name="Arbeitslosigkeit" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 249.0
+offset_bottom = 88.0
+
+[node name="Label" type="Label" parent="Panel/Arbeitslosigkeit"]
+layout_mode = 2
+text = "Arbeitslosigkeit"
+
+[node name="ArbeitslosigkeitBar" type="ProgressBar" parent="Panel/Arbeitslosigkeit"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_mi343")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_a4c7n")
+
+[node name="Klimabelastung" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+offset_left = 17.0
+offset_top = 119.0
+offset_right = 249.0
+offset_bottom = 171.0
+
+[node name="Label" type="Label" parent="Panel/Klimabelastung"]
+layout_mode = 2
+text = "Klimabelastung"
+
+[node name="KlimabelastungBar" type="ProgressBar" parent="Panel/Klimabelastung"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_4lruc")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_ubn5p")
+
+[node name="Wohlstand" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+offset_left = 19.0
+offset_top = 200.0
+offset_right = 249.0
+offset_bottom = 252.0
+
+[node name="Label" type="Label" parent="Panel/Wohlstand"]
+layout_mode = 2
+text = "Wohlstand
+"
+
+[node name="WohlstandBar" type="ProgressBar" parent="Panel/Wohlstand"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_obgdw")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_ubn5p")
+
+[node name="Waehlerzustimmung" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 681.0
+offset_top = 51.0
+offset_right = 1262.0
+offset_bottom = 81.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vlgao")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5xfy4")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="Waehlerzustimmung"]
+clip_contents = true
+layout_direction = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = -27.0
+offset_right = 153.0
+offset_bottom = -4.0
+text = "Wählerzustimmung"
+
+[node name="WahlperiodeBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 51.0
+offset_right = 330.0
+offset_bottom = 81.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6qn4o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bafcu")
+step = 0.05
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="WahlperiodeBar"]
+clip_contents = true
+layout_direction = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = -25.0
+offset_right = 172.0
+offset_bottom = -2.0
+text = "Nächste Wahlperiode:"
