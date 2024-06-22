@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial class MainMenu : Node2D
+public partial class GameOver : Node2D
 {
-	private void OnStartButtonPressed(){
+	private void OnRestartButtonPressed(){
 		GetTree().ChangeSceneToFile("res://Scenes/PollsAndPillars.tscn");
 	}
 

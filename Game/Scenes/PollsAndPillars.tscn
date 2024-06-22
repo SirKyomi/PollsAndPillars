@@ -125,6 +125,7 @@ layer_2/name = "buildings"
 layer_2/tile_data = PackedInt32Array()
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
 
 [node name="PopupMenu" type="PopupMenu" parent="."]
 size = Vector2i(80, 80)
