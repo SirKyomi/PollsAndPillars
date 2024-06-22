@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build Game/PollsAndPillars.sln --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test Game/PollsAndPillars.sln --no-build --verbosity normal
