@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx3got1bd641b"
-path="res://.godot/imported/fantasyhextiles_v3.png-a57e054ff89aa3e3f55e343576f720b4.ctex"
+uid="uid://bu0btsyqxrkja"
+path="res://.godot/imported/fantasyhextiles_v3_own.png-f2949af2b91dc884114eb2aef09012c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/fantasyhextiles_v3.png"
-dest_files=["res://.godot/imported/fantasyhextiles_v3.png-a57e054ff89aa3e3f55e343576f720b4.ctex"]
+source_file="res://Art/fantasyhextiles_v3_own.png"
+dest_files=["res://.godot/imported/fantasyhextiles_v3_own.png-f2949af2b91dc884114eb2aef09012c7.ctex"]
 
 [params]
 
