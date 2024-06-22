@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3g1ht4becoky"]
+[gd_scene load_steps=7 format=3 uid="uid://b3g1ht4becoky"]
 
 [ext_resource type="Texture2D" uid="uid://cx3got1bd641b" path="res://Art/fantasyhextiles_v3.png" id="1_p7ifg"]
 [ext_resource type="Script" path="res://Logic/PollsAndPillars.cs" id="1_yf0n4"]
+[ext_resource type="PackedScene" uid="uid://bi554x4y7rwnv" path="res://Scenes/gui.tscn" id="3_8oxvn"]
+[ext_resource type="Script" path="res://Logic/GUI.cs" id="4_nooda"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3gkx0"]
 texture = ExtResource("1_p7ifg")
@@ -134,6 +136,14 @@ item_0/id = 0
 item_1/text = "Bauelelemt02"
 item_1/id = 1
 
+[node name="GUI" parent="." instance=ExtResource("3_8oxvn")]
+offset_left = -639.0
+offset_top = -362.0
+offset_right = -639.0
+offset_bottom = -362.0
+script = ExtResource("4_nooda")
+
+[connection signal="UiAktualisieren" from="." to="GUI" method="OnPollsAndPillarsUiAktualisieren"]
 [connection signal="id_pressed" from="PopupMenu" to="." method="OnPopupMenuIdPressed"]
 [connection signal="mouse_entered" from="PopupMenu" to="." method="OnPopupMenuMouseEntered"]
 [connection signal="mouse_exited" from="PopupMenu" to="." method="OnPopupMenuMouseExited"]

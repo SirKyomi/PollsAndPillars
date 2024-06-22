@@ -10,6 +10,10 @@ public partial class PollsAndPillars : Node2D
 	bool popupIsShowing = false;
 	bool mouseIsInPopup = false;
 	Vector2I mousePositionSuccessFullClick;
+
+	[Signal]
+	public delegate void UiAktualisierenEventHandler(double wohlstand, double arbeitslosigkeit, double klimabelastung);
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -44,9 +48,11 @@ public partial class PollsAndPillars : Node2D
 		if (atlasCoordsTargetTile == new Vector2I(2, 4)){
 			//klimafreundlich
 			//stats anpassen
+			EmitSignal(SignalName.UiAktualisieren, 12, 15, -10);
 		} else {
 			//klimaschädlich
 			//stats anpassen
+			EmitSignal(SignalName.UiAktualisieren, -12, 15, -10);
 		}
 
 		popupIsShowing = false;

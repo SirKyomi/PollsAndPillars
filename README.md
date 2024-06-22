@@ -71,6 +71,12 @@ Name: Polls and Pillars
 ##### Fabrik
 ![Solarmodul.png](Images/Fabrikmodul.png)
 
+## Weiterführende Ideen
+
+### UI
+
+![Idee_UI](Images/Idee_UI.png)
+
 
 ## License
 
