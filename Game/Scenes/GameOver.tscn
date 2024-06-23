@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://co0y1i8igsvhp"]
+[gd_scene load_steps=4 format=3 uid="uid://bkslukfyi8lqn"]
 
-[ext_resource type="Script" path="res://Logic/GameOver.cs" id="1_02fle"]
-[ext_resource type="Theme" uid="uid://c3s8ue51w08jt" path="res://MenuTheme.tres" id="1_k25h4"]
+[ext_resource type="Theme" path="res://MenuTheme.tres" id="1_k25h4"]
+[ext_resource type="Script" path="res://Logic/game_over.gd" id="1_r0o1f"]
 
 [sub_resource type="Theme" id="Theme_6h00t"]
 resource_name = "MenuTheme"
 default_font_size = 32
 
 [node name="GameOver" type="Node2D"]
-script = ExtResource("1_02fle")
+script = ExtResource("1_r0o1f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

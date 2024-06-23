@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bi554x4y7rwnv"]
+[gd_scene load_steps=12 format=3 uid="uid://bi554x4y7rwnv"]
 
-[ext_resource type="Script" path="res://Logic/Progressbar_MinGood.cs" id="1_a4c7n"]
-[ext_resource type="Script" path="res://Logic/Progressbar_MaxGood.cs" id="1_ubn5p"]
+[ext_resource type="Script" path="res://Logic/gui.gd" id="1_n5gdl"]
+[ext_resource type="Script" path="res://Logic/progress_bar_min_good.gd" id="1_ubd2f"]
+[ext_resource type="Script" path="res://Logic/progress_bar_max_good.gd" id="2_xklj8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6mjl"]
 bg_color = Color(0.341176, 0.639216, 0.639216, 0.6)
@@ -90,6 +91,7 @@ offset_left = -2.0
 offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_n5gdl")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(0, 300)
@@ -117,7 +119,7 @@ layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_mi343")
 value = 50.0
 show_percentage = false
-script = ExtResource("1_a4c7n")
+script = ExtResource("1_ubd2f")
 
 [node name="Klimabelastung" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
@@ -136,7 +138,7 @@ layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_4lruc")
 value = 50.0
 show_percentage = false
-script = ExtResource("1_ubn5p")
+script = ExtResource("1_ubd2f")
 
 [node name="Wohlstand" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
@@ -156,7 +158,7 @@ layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_obgdw")
 value = 50.0
 show_percentage = false
-script = ExtResource("1_ubn5p")
+script = ExtResource("2_xklj8")
 
 [node name="Waehlerzustimmung" type="ProgressBar" parent="."]
 layout_mode = 0
@@ -201,3 +203,7 @@ offset_top = -25.0
 offset_right = 172.0
 offset_bottom = -2.0
 text = "Nächste Wahlperiode:"
+
+[connection signal="value_changed" from="Panel/Arbeitslosigkeit/ArbeitslosigkeitBar" to="Panel/Arbeitslosigkeit/ArbeitslosigkeitBar" method="wende_farbcode_an"]
+[connection signal="value_changed" from="Panel/Klimabelastung/KlimabelastungBar" to="Panel/Klimabelastung/KlimabelastungBar" method="wende_farbcode_an"]
+[connection signal="value_changed" from="Panel/Wohlstand/WohlstandBar" to="Panel/Wohlstand/WohlstandBar" method="wende_farbcode_an"]

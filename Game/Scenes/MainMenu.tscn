@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdledydkqeklu"]
+[gd_scene load_steps=4 format=3 uid="uid://b1k50y25qd0br"]
 
-[ext_resource type="Script" path="res://Logic/MainMenu.cs" id="1_exwo5"]
-[ext_resource type="Theme" uid="uid://c3s8ue51w08jt" path="res://MenuTheme.tres" id="2_vjebl"]
+[ext_resource type="Script" path="res://Logic/main_menu.gd" id="1_y4o3h"]
+[ext_resource type="Theme" path="res://MenuTheme.tres" id="2_vjebl"]
 
 [sub_resource type="Theme" id="Theme_j7u0s"]
 resource_name = "MenuTheme"
 default_font_size = 32
 
 [node name="MainMenu" type="Node2D"]
-script = ExtResource("1_exwo5")
+script = ExtResource("1_y4o3h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -54,5 +54,7 @@ layout_mode = 2
 theme = SubResource("Theme_j7u0s")
 text = "Quit"
 
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/StartButton" to="." method="on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/StartButton" to="." method="OnStartButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/QuitButton" to="." method="on_quit_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/QuitButton" to="." method="OnQuitButtonPressed"]
