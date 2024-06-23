@@ -44,10 +44,14 @@ public partial class GUI : Control
     
     private void SetzeStartWerte()
     {
-        _wohlstand = 50;
-        _arbeitslosigkeit = 50;
-        _klimabelastung = 50;
+        _wohlstand = 30;
+        WohlstandUiAktualisieren(0);
+        _arbeitslosigkeit = 60;
+        ArbeitslosigkeitUiAktualisieren(0);
+        _klimabelastung = 20;
+        KlimabelastungUiAktualisieren(0);
         _waehlerzustimmung = 100;
+        WaehlerzustimmungUiAktualisieren();
     }
     
     private void InitialisiereTimer()

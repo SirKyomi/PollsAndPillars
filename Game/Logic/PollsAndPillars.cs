@@ -46,9 +46,9 @@ public partial class PollsAndPillars : Node2D
 		tileMap.SetCell(groundLayer, mousePositionSuccessFullClick, sourceID, atlasCoordsTargetTile);
 		
 		if (atlasCoordsTargetTile == atlasCoordsCarbonCapture){
-			EmitSignal(SignalName.UiAktualisieren, 0, -25, -15); //klimafreundlich
+			EmitSignal(SignalName.UiAktualisieren, 0, -20, -12); //klimafreundlich
 		} else {
-			EmitSignal(SignalName.UiAktualisieren, -10, 15, 20);
+			EmitSignal(SignalName.UiAktualisieren, -10, 15, 16);
 		}
 
 		popupIsShowing = false;
