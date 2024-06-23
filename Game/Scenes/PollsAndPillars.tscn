@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3g1ht4becoky"]
+[gd_scene load_steps=8 format=3 uid="uid://b3g1ht4becoky"]
 
 [ext_resource type="Script" path="res://Logic/PollsAndPillars.cs" id="1_yf0n4"]
 [ext_resource type="Texture2D" uid="uid://bu0btsyqxrkja" path="res://Art/fantasyhextiles_v3_own.png" id="2_ga6o5"]
 [ext_resource type="PackedScene" uid="uid://bi554x4y7rwnv" path="res://Scenes/gui.tscn" id="3_8oxvn"]
 [ext_resource type="Script" path="res://Logic/GUI.cs" id="4_nooda"]
+[ext_resource type="Resource" uid="uid://d36y7cm5b3jxh" path="res://GameStats.tres" id="5_ddjr7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2gbui"]
 texture = ExtResource("2_ga6o5")
@@ -143,6 +144,7 @@ offset_top = -362.0
 offset_right = -639.0
 offset_bottom = -362.0
 script = ExtResource("4_nooda")
+gameStats = ExtResource("5_ddjr7")
 
 [connection signal="UiAktualisieren" from="." to="GUI" method="OnPollsAndPillarsUiAktualisieren"]
 [connection signal="id_pressed" from="PopupMenu" to="." method="OnPopupMenuIdPressed"]

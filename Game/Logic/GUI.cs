@@ -1,8 +1,11 @@
-using Godot;
+ using Godot;
 using System;
 
 public partial class GUI : Control
 {
+    [Export]
+    public GameStats gameStats;
+
     #region Stats
 
     private double _wohlstand;
@@ -19,11 +22,11 @@ public partial class GUI : Control
 
     private Timer _timer;
     private const double WaitTime = 0.05;
-    private const int SekundenProWahlperiode = 60;
+    private const int SekundenProWahlperiode = 15;
 
     private Timer _timerArbeitslosenHinzufuegen;
-    private const int AnzahlAbreitslosenSteigerungenProWahlperiode = 24;
-    private const double FaktorAbreitslosenSteigerungenProWahlperiode = 4;
+    private const int AnzahlAbreitslosenSteigerungenProWahlperiode = 8;
+    private const double FaktorAbreitslosenSteigerungenProWahlperiode = 2;
     private const double WaitTimeArbeitslosenHinzufuegen = SekundenProWahlperiode / AnzahlAbreitslosenSteigerungenProWahlperiode;
     
     private double _vergangeneZeit = 0;
@@ -61,7 +64,11 @@ public partial class GUI : Control
     private void TimerOnTimeout()
     {
         _vergangeneZeit += WaitTime;
+        _vergangeneZeit = Math.Round(_vergangeneZeit, 4);
         var rest = (_vergangeneZeit % SekundenProWahlperiode);
+        if (rest == 0 && _waehlerzustimmung < Schwellenwert)
+            GameOver();
+
         var berechneteProzent = (rest / SekundenProWahlperiode) * 100;
         GetNode<ProgressBar>("WahlperiodeBar").Value = berechneteProzent;
     }
@@ -69,7 +76,19 @@ public partial class GUI : Control
     private void ErhoeheArbeitslosigkeit()
     {
         ArbeitslosigkeitUiAktualisieren(FaktorAbreitslosenSteigerungenProWahlperiode);
-        BerechneWaehlerzustimmung(_arbeitslosigkeit, FaktorAbreitslosenSteigerungenProWahlperiode, true);
+        BerechneWaehlerzustimmung(_arbeitslosigkeit, FaktorAbreitslosenSteigerungenProWahlperiode, true, 30);
+
+        if (_arbeitslosigkeit > 75) {
+            BerechneWaehlerzustimmung(_arbeitslosigkeit, 10, true);
+        }
+
+        if (_klimabelastung > 75) {
+            BerechneWaehlerzustimmung(_klimabelastung, 10, true);
+        }
+        
+        if (_wohlstand < 25) {
+            BerechneWaehlerzustimmung(_wohlstand, -10, false);
+        }
     }
 
     private void ArbeitslosigkeitUiAktualisieren(double arbeitslosigkeit)
@@ -103,7 +122,13 @@ public partial class GUI : Control
 
     private void HandleGameOver()
     {
-        if (_waehlerzustimmung <= 0) GetTree().ReloadCurrentScene();
+        if (_waehlerzustimmung <= 0) GameOver();
+    }
+
+    private void GameOver() {
+        gameStats.Score = _vergangeneZeit;
+        gameStats.SekundenProWahlperiode = SekundenProWahlperiode;
+        GetTree().ChangeSceneToFile("res://Scenes/GameOver.tscn");
     }
 
     public void OnPollsAndPillarsUiAktualisieren(double arbeitslosigkeit, double klimabelastung, double wohlstand) => WendeWerteAnUndBerechneWaehlerzustimmung(arbeitslosigkeit, klimabelastung, wohlstand);
@@ -111,34 +136,32 @@ public partial class GUI : Control
     private void WendeWerteAnUndBerechneWaehlerzustimmung(double arbeitslosigkeit, double klimabelastung, double wohlstand)
     {
         KlimabelastungUiAktualisieren(klimabelastung);
-        BerechneWaehlerzustimmung(_klimabelastung, klimabelastung, true);
+        BerechneWaehlerzustimmung(_klimabelastung, klimabelastung, true, 30);
 
         WohlstandUiAktualisieren(wohlstand);
         BerechneWaehlerzustimmung(_wohlstand, wohlstand, false);
 
         
         ArbeitslosigkeitUiAktualisieren(arbeitslosigkeit);
-        BerechneWaehlerzustimmung(_arbeitslosigkeit, arbeitslosigkeit, true);
+        BerechneWaehlerzustimmung(_arbeitslosigkeit, arbeitslosigkeit, true, 30);
     }
-    private void BerechneWaehlerzustimmung(double value, double changeValue, bool darfNichtHoeherSein)
+    private void BerechneWaehlerzustimmung(double value, double changeValue, bool darfNichtHoeherSein, double schwellenwert = 50)
     {
-        if (darfNichtHoeherSein && value > Schwellenwert && changeValue > 0){
-            _waehlerzustimmung -= changeValue * 0.33;
+        if (darfNichtHoeherSein && value > schwellenwert && changeValue > 0){ //minus
+            _waehlerzustimmung -= changeValue * 0.66;
         }            
-        else if (darfNichtHoeherSein && value < Schwellenwert && changeValue < 0){
-            _waehlerzustimmung += -(changeValue * 0.33);
+        else if (darfNichtHoeherSein && value < schwellenwert && changeValue < 0){
+            _waehlerzustimmung += -(changeValue * 0.24); //plus
         }            
-        if (!darfNichtHoeherSein && value < Schwellenwert && changeValue < 0){
-            _waehlerzustimmung -= -(changeValue * 0.33);
+        if (!darfNichtHoeherSein && value < schwellenwert && changeValue < 0){
+            _waehlerzustimmung -= -(changeValue * 0.66); //minus
         }            
-        else if (!darfNichtHoeherSein && value > Schwellenwert && changeValue > 0){
-            _waehlerzustimmung += changeValue * 0.33;
+        else if (!darfNichtHoeherSein && value > schwellenwert && changeValue > 0){
+            _waehlerzustimmung += changeValue * 0.24; //plus
         }
 
         WaehlerzustimmungUiAktualisieren();
     }
-
-
 
     private static double Clamp0_100(double wert) => Math.Clamp(wert, 0, 100);
 }
