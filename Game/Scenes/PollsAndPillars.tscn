@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3g1ht4becoky"]
 
 [ext_resource type="Script" path="res://Logic/PollsAndPillars.cs" id="1_yf0n4"]
-
+[ext_resource type="Texture2D" uid="uid://bu0btsyqxrkja" path="res://Art/fantasyhextiles_v3_own.png" id="2_ga6o5"]
 [ext_resource type="PackedScene" uid="uid://bi554x4y7rwnv" path="res://Scenes/gui.tscn" id="3_8oxvn"]
 [ext_resource type="Script" path="res://Logic/GUI.cs" id="4_nooda"]
-[ext_resource type="Texture2D" uid="uid://bu0btsyqxrkja" path="res://Art/fantasyhextiles_v3_own.png" id="2_ga6o5"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2gbui"]
 texture = ExtResource("2_ga6o5")
 texture_region_size = Vector2i(32, 48)
@@ -132,9 +132,9 @@ zoom = Vector2(1.5, 1.5)
 [node name="PopupMenu" type="PopupMenu" parent="."]
 size = Vector2i(80, 80)
 item_count = 2
-item_0/text = "Bauelement01"
+item_0/text = "Fabrik"
 item_0/id = 0
-item_1/text = "Bauelelemt02"
+item_1/text = "CO2-Speicher"
 item_1/id = 1
 
 [node name="GUI" parent="." instance=ExtResource("3_8oxvn")]

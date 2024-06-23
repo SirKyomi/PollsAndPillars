@@ -136,7 +136,7 @@ layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_4lruc")
 value = 50.0
 show_percentage = false
-script = ExtResource("1_ubn5p")
+script = ExtResource("1_a4c7n")
 
 [node name="Wohlstand" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
